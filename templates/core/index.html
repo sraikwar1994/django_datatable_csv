@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <table id="example" class="table table-striped" style="width:100%"></table>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+const data = {{ content | safe }}
+const columns = []
+data.columns.map(a => {
+    columns.push({'title': a})
+})
+var dataSet = data.data;
+$(document).ready(function() {
+    $('#example').DataTable({
+        data: dataSet,
+        columns: columns
+    });
+});
+</script>
+{% endblock script %}
